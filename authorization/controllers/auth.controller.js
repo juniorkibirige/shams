@@ -4,6 +4,7 @@ const crypto = require('crypto')
 const uuid = require('uuid')
 
 exports.login = (req, res) => {
+    console.log(req)
     try {
         let refreshId = req.body.userId + jwtSecret;
         let salt = crypto.randomBytes(32).toString('base64')
