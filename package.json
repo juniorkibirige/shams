@@ -4,10 +4,9 @@
   "description": "API for shamseshop",
   "main": "index.js",
   "scripts": {
-
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engine":{
+  "engine": {
     "node": "12.16.2"
   },
   "repository": {
@@ -42,8 +41,9 @@
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
     "mongoose": "^5.7.9",
-    "uuid": "^3.3.3",
+    "mysql": "^2.18.1",
     "swagger-ui-express": "^4.1.2",
-    "sync-request": "^6.1.0"
+    "sync-request": "^6.1.0",
+    "uuid": "^3.3.3"
   }
 }
