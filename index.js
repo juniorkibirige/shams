@@ -22,7 +22,9 @@ app.use( (req, res, next) => {
 app.use(bodyParser.json())
 AuthRouter.routesConfig(app)
 UsersRouter.routesConfig(app)
-
+app.get('/', (req, res) => {
+    res.status(200).send({data: ['You\'ve reached the Shams Errand API']})
+})
 app.listen(config.port, _ => {
     console.log('API Server is listening at port %s', config.port)
 })
