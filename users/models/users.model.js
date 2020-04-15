@@ -25,25 +25,30 @@ exports.createUser = (userData) => {
 }
 
 exports.findById = (id) => {
-    return userModel.findById(id).then(result => {
-        if(result === null) return null
-        result = result.toJSON()
-        delete result._id
-        delete result.__v
-        delete result.password
-        return result
-    })
+    try {
+        return userModel.findById(id).then(result => {
+            if (result === null) return null
+            result = result.toJSON()
+            delete result._id
+            delete result.__v
+            delete result.password
+            return result
+        })
+    }
+    catch (e) {
+        return null
+    }
 }
 
 exports.patchUser = (id, userData) => {
-    return new Promise( (resolve, reject) => {
+    return new Promise((resolve, reject) => {
         userModel.findById(id, (err, user) => {
-            if(err) reject(err)
-            for(let i in userData) {
+            if (err) reject(err)
+            for (let i in userData) {
                 user[i] = userData[i]
             }
-            user.save( (err, updatedUser) => {
-                if(err) return reject(err)
+            user.save((err, updatedUser) => {
+                if (err) return reject(err)
                 resolve(updatedUser)
             })
         })
@@ -66,9 +71,9 @@ exports.list = (perPage, page) => {
 };
 
 exports.removeById = (userId) => {
-    return new Promise( (resolve, reject) => {
-        userModel.remove({_id: userId}, (err) => {
-            if(err) {
+    return new Promise((resolve, reject) => {
+        userModel.remove({ _id: userId }, (err) => {
+            if (err) {
                 console.log(err)
                 reject(err)
                 return err
@@ -80,5 +85,5 @@ exports.removeById = (userId) => {
 }
 
 exports.findByEmail = (email) => {
-    return userModel.find({email: email})
+    return userModel.find({ email: email })
 }

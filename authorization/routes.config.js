@@ -14,4 +14,9 @@ exports.routesConfig = (app) => {
         AuthValidationMiddleware.validRefreshNeeded,
         AuthorizationController.login
     ])
+    app.get('/auth/', [
+        VerifyUserMiddleware.hasAuthValidFields,
+        VerifyUserMiddleware.isPasswordAndUserMatch
+        
+    ])
 }
