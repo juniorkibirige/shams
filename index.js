@@ -37,9 +37,9 @@ OrdersRouter.routesConfig(app)
 app.get('/', (req, res) => {
     res.status(200).send({data: ['You\'ve reached the Shams Errand API']})
 })
-https.createServer(https_options, app).listen(config.ssl_port, _=> {
-    console.log('API SSL is at port %s', config.ssl_port)
-})
-// app.listen(config.port, _ => {
-//     console.log('API Server is listening at port %s', config.port)
+// https.createServer(https_options, app).listen(config.ssl_port, _=> {
+//     console.log('API SSL is at port %s', config.ssl_port)
 // })
+app.listen(config.port, _ => {
+    console.log('API Server is listening at port %s', config.port)
+})
