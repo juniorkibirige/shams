@@ -1,6 +1,5 @@
 <?php
 if($_GET['key'] && $_GET['origins'] && $_GET['destinations']){
-    // echo json_encode($_GET);
     $key = $_GET['key'];
     $o = $_GET['origins'];
     $d = $_GET['destinations'];

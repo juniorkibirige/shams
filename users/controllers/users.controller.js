@@ -57,6 +57,6 @@ exports.removeById = (req, res) => {
         res.status(204).send(result)
     }).catch(err=>{
         console.log(err)
-        res.status(404).send({errors: 'Specified does\'nt exist!'})
+        res.status(404).send({errors: 'Specified user does\'nt exist!'})
     })
 }

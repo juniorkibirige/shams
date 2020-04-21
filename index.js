@@ -15,6 +15,7 @@ var https_options = {
 
 const AuthRouter = require('./authorization/routes.config')
 const UsersRouter = require('./users/routes.config')
+const OrdersRouter = require('./orders/routes.config')
 
 app.use( (req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
@@ -32,12 +33,13 @@ app.use( (req, res, next) => {
 app.use(bodyParser.json())
 AuthRouter.routesConfig(app)
 UsersRouter.routesConfig(app)
+OrdersRouter.routesConfig(app)
 app.get('/', (req, res) => {
     res.status(200).send({data: ['You\'ve reached the Shams Errand API']})
 })
-// https.createServer(https_options, app).listen(config.ssl_port, _=> {
-//     console.log('API SSL is at port %s', config.ssl_port)
-// })
-app.listen(config.port, _ => {
-    console.log('API Server is listening at port %s', config.port)
+https.createServer(https_options, app).listen(config.ssl_port, _=> {
+    console.log('API SSL is at port %s', config.ssl_port)
 })
+// app.listen(config.port, _ => {
+//     console.log('API Server is listening at port %s', config.port)
+// })

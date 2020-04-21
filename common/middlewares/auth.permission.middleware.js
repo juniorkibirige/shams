@@ -12,6 +12,15 @@ exports.minimumPermissionLevelRequired = (rpl) => {
     }
 }
 
+exports.onlySameUserCanDoThisAction = (req, res, next) => {
+    let upl = req.jwt.userId
+    if(req.params && req.params.userId === req.params.userId) {
+        return next()
+    } else {
+        return res.status(403).send()
+    }
+}
+
 exports.onlySameUserOrAdminCanDoThisAction = (req, res, next) =>{
     let upl = parseInt(req.jwt.permissionLevel)
     let uI = req.jwt.userId
