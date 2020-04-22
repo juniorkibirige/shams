@@ -4,7 +4,9 @@ const crypto = require('crypto')
 exports.addOrder = (req, res) => {
     OrderModel.createOrder(req.body)
         .then((result) => {
-            console.log(result)
+            if(result.name == 'MongoError') {
+                res.status(400).send({ status: 400, result: result })
+            } else 
             res.status(201).send({ id: result._id })
         })
 }

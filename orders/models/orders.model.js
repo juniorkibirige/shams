@@ -6,7 +6,7 @@ const orderSchema = new Schema({
     merchant_reference: String
 })
 
-orderSchema.virtual('id').get( _ => {
+orderSchema.virtual('id').get(_ => {
     return this._id.toHexString()
 })
 
@@ -16,15 +16,18 @@ orderSchema.set('toJSON', {
 
 const orderModel = mongoose.model('Orders', orderSchema)
 exports.createOrder = (orderData) => {
-    console.log(orderData)
     const order = new orderModel(orderData)
-    return order.save()
+    return order
+        .save()
+        .catch(e => {
+            return e
+        })
 }
 
 exports.getOrder = (id) => {
     try {
-        return orderModel.findById(id).then( result => {
-            if(result === null) return null
+        return orderModel.findById(id).then(result => {
+            if (result === null) return null
             result = result.toJSON()
             delete result._id
             delete result.__v
